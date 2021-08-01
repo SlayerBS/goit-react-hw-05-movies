@@ -1,15 +1,22 @@
 import { getTrendingMovies } from "../services/api";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
+
 export default function HomeView() {
+  const [trendingMoviesList, setTrendingMoviesList] = useState([]);
   useEffect(() => {
-    getTrendingMovies().then(({ results }) => console.log(results));
+    const movies = getTrendingMovies().then(({ results }) =>
+      setTrendingMoviesList(results)
+    );
   }, []);
 
   //   console.log(movies);
 
   return (
-    <>
+    <ul>
+      {trendingMoviesList.map(({ id, title }) => {
+        return <li key={id}>{title}</li>;
+      })}
       <p>Trending today</p>
-    </>
+    </ul>
   );
 }
