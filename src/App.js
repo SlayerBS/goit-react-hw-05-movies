@@ -1,11 +1,12 @@
-import logo from './logo.svg';
-import './App.css';
+import Container from "./Components/Container/Container";
+import AppBar from "./Components/AppBar/AppBar";
 
-export default function App() {
+function App() {
   return (
     <Container>
-      <AppBar/>
+      <AppBar />
     </Container>
   );
 }
 
+export default App;
