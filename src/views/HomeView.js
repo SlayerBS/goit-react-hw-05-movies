@@ -1,7 +1,9 @@
 import { getTrendingMovies } from "../services/api";
 import { useState, useEffect } from "react";
+import { Link, useRouteMatch } from "react-router-dom";
 
 export default function HomeView() {
+  // const { url } = useRouteMatch();
   const [trendingMoviesList, setTrendingMoviesList] = useState([]);
   useEffect(() => {
     const movies = getTrendingMovies().then(({ results }) =>
@@ -10,13 +12,17 @@ export default function HomeView() {
   }, []);
 
   //   console.log(movies);
-
+  console.log(trendingMoviesList);
   return (
-    <ul>
-      {trendingMoviesList.map(({ id, title }) => {
-        return <li key={id}>{title}</li>;
-      })}
+    <>
       <p>Trending today</p>
-    </ul>
+      <ul>
+        {trendingMoviesList.map(({ id, title }) => (
+          <li key={id}>
+            <Link to={`/movies/${id}`}>{title}</Link>
+          </li>
+        ))}
+      </ul>
+    </>
   );
 }

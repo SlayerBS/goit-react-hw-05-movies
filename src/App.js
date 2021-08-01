@@ -16,6 +16,7 @@ function App() {
         <Route path="/movies">
           <MoviesView />
         </Route>
+        <Route path="/movies/:moviesId">TEXT</Route>
         <Route>
           <NotFoundView />
         </Route>
