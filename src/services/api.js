@@ -4,7 +4,7 @@ import { ToastContainer, toast } from "react-toastify";
 axios.defaults.baseURL = "https://api.themoviedb.org/3";
 axios.defaults.params = {
   api_key: "e0f5a2b3f12c3f7ea9352edce7e33432",
-  language: "en-US",
+
   page: 1,
 };
 
@@ -19,10 +19,14 @@ async function getTrendingMovies() {
 }
 
 async function getMovieById(movieId) {
+  console.log(movieId);
   const { data } = await axios
-    .get("/movie/", {
-      params: { movie_id: movieId },
-    })
+    .get(
+      `/movie/${movieId}`
+      // {
+      // params: { movie_id: movieId },
+      // }
+    )
     .then((data) => data)
     .catch(function (error) {
       toast.error(error);

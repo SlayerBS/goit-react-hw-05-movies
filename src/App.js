@@ -4,6 +4,7 @@ import AppBar from "./Components/AppBar/AppBar";
 import HomeView from "./views/HomeView";
 import MoviesView from "./views/MoviesView";
 import NotFoundView from "./views/NotFoundView";
+import MovieDetailView from "./views/MovieDetailView";
 
 function App() {
   return (
@@ -13,10 +14,15 @@ function App() {
         <Route path="/" exact>
           <HomeView />
         </Route>
-        <Route path="/movies">
+
+        <Route path="/movies" exact>
           <MoviesView />
         </Route>
-        <Route path="/movies/:moviesId">TEXT</Route>
+
+        <Route path="/movies/:movieId">
+          <MovieDetailView />
+        </Route>
+
         <Route>
           <NotFoundView />
         </Route>
