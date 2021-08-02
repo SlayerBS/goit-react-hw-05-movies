@@ -5,6 +5,7 @@ import * as api from "../services/api";
 export default function MovieDetailView() {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
+  const [cast, setCast] = useState(null);
   console.log(movieId);
 
   useEffect(() => {
@@ -21,6 +22,14 @@ export default function MovieDetailView() {
         vote_average: data.vote_average * 10,
       }))
       .then(setMovie);
+  }, [movieId]);
+
+  useEffect(() => {
+    api
+      .getCredits(movieId)
+      .then((data) => data)
+      .then(setCast);
+    console.log("cast", cast);
   }, [movieId]);
 
   console.log(movie);

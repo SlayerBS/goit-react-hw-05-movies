@@ -1,6 +1,7 @@
 import { getTrendingMovies } from "../services/api";
 import { useState, useEffect } from "react";
 import { Link, useRouteMatch } from "react-router-dom";
+import ListMovies from "../Components/ListMovies";
 
 export default function HomeView() {
   // const { url } = useRouteMatch();
@@ -16,13 +17,7 @@ export default function HomeView() {
   return (
     <>
       <p>Trending today</p>
-      <ul>
-        {trendingMoviesList.map(({ id, title }) => (
-          <li key={id}>
-            <Link to={`/movies/${id}`}>{title}</Link>
-          </li>
-        ))}
-      </ul>
+      <ListMovies data={trendingMoviesList} />
     </>
   );
 }
