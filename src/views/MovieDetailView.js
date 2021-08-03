@@ -10,7 +10,6 @@ export default function MovieDetailView() {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
   const [cast, setCast] = useState(null);
-  console.log(movieId);
 
   useEffect(() => {
     api
@@ -26,43 +25,39 @@ export default function MovieDetailView() {
         vote_average: data.vote_average * 10,
       }))
       .then(setMovie);
-    // history.push({
-    //   ...location,
-    //   search: movieId,
-    // });
   }, [movieId]);
 
   useEffect(() => {
-    api
-      .getCredits(movieId)
-      .then((data) => data)
-      .then(setCast);
-    console.log("cast", cast);
+    api.getCredits(movieId).then((data) => setCast(data));
   }, [movieId]);
-
-  console.log(movie);
-  //   const { title, genres, poster_path } = movie;
 
   return (
     <>
       {movie && (
-        <div>
+        <>
           <div>
-            <img src={movie.poster_path} alt={movie.title} />
+            <div>
+              <img src={movie.poster_path} alt={movie.title} />
+            </div>
+            <div>
+              <h2>
+                {movie.title}({movie.release_date})
+              </h2>
+              <p>User Score: {movie.vote_average}%</p>
+              <h3>Overview</h3>
+              {movie.overview && <p>{movie.overview}</p>}
+              <h4>Genres</h4>
+              <ul>
+                {movie.genres.map(({ id, name }) => (
+                  <li key={id}>{name}</li>
+                ))}
+              </ul>
+            </div>
           </div>
           <div>
-            <h2>{movie.title}</h2>
-            <p>User Score: {movie.vote_average}%</p>
-            <h3>Overview</h3>
-            {movie.overview && <p>{movie.overview}</p>}
-            <h4>Genres</h4>
-            <ul>
-              {movie.genres.map(({ id, name }) => (
-                <li key={id}>{name}</li>
-              ))}
-            </ul>
+            <h4>Additional information</h4>
           </div>
-        </div>
+        </>
       )}
     </>
   );

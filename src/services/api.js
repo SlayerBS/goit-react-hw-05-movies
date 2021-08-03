@@ -41,13 +41,9 @@ async function getMoviesByQuery(searchQuery) {
 }
 
 async function getCredits(movieId) {
-  const { data } = await axios
-    .get(`/movie/${movieId}/credits`)
-    .then((data) => data)
-    .catch(function (error) {
-      toast.error(error);
-    });
-  return data;
+  const { data } = await axios.get(`/movie/${movieId}/credits`);
+
+  return data.cast;
 }
 
 export { getTrendingMovies, getMovieById, getMoviesByQuery, getCredits };
