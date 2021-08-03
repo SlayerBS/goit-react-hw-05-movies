@@ -11,9 +11,6 @@ export default function HomeView() {
       setTrendingMoviesList(results)
     );
   }, []);
-
-  //   console.log(movies);
-  console.log(trendingMoviesList);
   return (
     <>
       <p>Trending today</p>

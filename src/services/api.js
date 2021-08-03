@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 axios.defaults.baseURL = "https://api.themoviedb.org/3";
 axios.defaults.params = {
@@ -19,14 +19,8 @@ async function getTrendingMovies() {
 }
 
 async function getMovieById(movieId) {
-  console.log(movieId);
   const { data } = await axios
-    .get(
-      `/movie/${movieId}`
-      // {
-      // params: { movie_id: movieId },
-      // }
-    )
+    .get(`/movie/${movieId}`)
     .then((data) => data)
     .catch(function (error) {
       toast.error(error);
@@ -47,7 +41,6 @@ async function getMoviesByQuery(searchQuery) {
 }
 
 async function getCredits(movieId) {
-  console.log(movieId);
   const { data } = await axios
     .get(`/movie/${movieId}/credits`)
     .then((data) => data)

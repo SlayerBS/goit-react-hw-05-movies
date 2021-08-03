@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import * as api from "../services/api";
 import poster from "../no-poster.jpg";
 
 export default function MovieDetailView() {
+  const history = useHistory();
+  const location = useLocation();
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
   const [cast, setCast] = useState(null);
@@ -23,6 +26,10 @@ export default function MovieDetailView() {
         vote_average: data.vote_average * 10,
       }))
       .then(setMovie);
+    // history.push({
+    //   ...location,
+    //   search: movieId,
+    // });
   }, [movieId]);
 
   useEffect(() => {
