@@ -17,7 +17,7 @@ export default function MoviesView() {
     }
     const newSearch = new URLSearchParams(location.search).get("query");
     setSearchQuery(newSearch);
-  }, [location.search]);
+  }, [history, location]);
 
   useEffect(() => {
     console.log("location", location);
