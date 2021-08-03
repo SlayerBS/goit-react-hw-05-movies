@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import * as api from "../services/api";
+import poster from "../no-poster.jpg";
 
 export default function MovieDetailView() {
   const { movieId } = useParams();
@@ -18,7 +19,7 @@ export default function MovieDetailView() {
           : "No Date",
         poster_path: data.poster_path
           ? `https://image.tmdb.org/t/p/w300${data.poster_path}`
-          : "../no-poster.jpg",
+          : poster,
         vote_average: data.vote_average * 10,
       }))
       .then(setMovie);
