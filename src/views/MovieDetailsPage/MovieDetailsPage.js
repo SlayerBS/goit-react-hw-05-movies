@@ -8,26 +8,25 @@ import {
   useHistory,
   useLocation,
 } from "react-router-dom";
-
+import { toast } from "react-toastify";
 import * as api from "../../services/api";
-import poster from "../../no-poster.jpg";
 import LoaderSpiner from "../../Components/Loader";
+
+import poster from "../../no-poster.jpg";
+
+import styles from "./MovieDetailsPage.module.css";
 
 const Cast = lazy(() => import("../Cast" /* webpackChunkName:"cast"*/));
 const Reviews = lazy(() =>
   import("../Reviews" /* webpackChunkName:"reviews"*/)
 );
 
-export default function MovieDetailView() {
+export default function MovieDetailsPage() {
   const history = useHistory();
   const location = useLocation();
-  console.log("history", history);
-
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
   const { url, path } = useRouteMatch();
-  console.log("url", url, "path", path);
-  console.log("location.pathname", location.pathname, "url/cast", url);
 
   useEffect(() => {
     api
@@ -49,29 +48,30 @@ export default function MovieDetailView() {
     history.push(location?.state?.from ?? "/");
     return;
   };
-
   return (
     <>
       {movie && (
         <>
-          <button type="button" onClick={onGoBack}>
+          <button type="button" onClick={onGoBack} class={styles.btn}>
             Go back
           </button>
-          <div>
+          <div className={styles["movie-card"]}>
             <div>
               <img src={movie.poster_path} alt={movie.title} />
             </div>
-            <div>
+            <div className={styles.info}>
               <h2>
                 {movie.title} ({movie.release_date})
               </h2>
               <p>User Score: {movie.vote_average}%</p>
               <h3>Overview</h3>
               {movie.overview && <p>{movie.overview}</p>}
-              <h4>Genres</h4>
-              <ul>
+              <h3>Genres</h3>
+              <ul className={styles.genres}>
                 {movie.genres.map(({ id, name }) => (
-                  <li key={id}>{name}</li>
+                  <li key={id} className={styles.genre}>
+                    {name}
+                  </li>
                 ))}
               </ul>
             </div>
@@ -83,6 +83,8 @@ export default function MovieDetailView() {
                 pathname: `${url}/cast`,
                 state: { from: location?.state?.from ?? "/" },
               }}
+              className={styles.link}
+              activeClassName={styles.active}
             >
               Cast
             </NavLink>
@@ -91,6 +93,8 @@ export default function MovieDetailView() {
                 pathname: `${url}/reviews`,
                 state: { from: location?.state?.from ?? "/" },
               }}
+              className={styles.link}
+              activeClassName={styles.active}
             >
               Reviews
             </NavLink>

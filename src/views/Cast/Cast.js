@@ -13,16 +13,15 @@ export default function Cast() {
   useEffect(() => {
     getCredits(movieId).then((data) => {
       if (data.length === 0) {
-        toast.error("There are no information about actors");
+        toast.error("No cast");
         return;
       }
       setCast(data);
     });
-  }, [movieId]);
+  }, []);
 
   return (
     <ul className={styles.cast}>
-      Cast
       {cast.map((actor) => {
         actor = {
           ...actor,

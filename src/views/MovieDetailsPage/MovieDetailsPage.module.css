@@ -1,0 +1,33 @@
+.movie-card {
+  display: flex;
+  border-bottom: 1px solid #2a363b;
+  margin-top: 10px;
+  padding-bottom: 15px;
+}
+.info {
+  padding-left: 20px;
+}
+.genres {
+  display: flex;
+  padding-top: 10px;
+}
+.genre {
+  list-style: none;
+  margin-right: 10px;
+  padding: 5px;
+  background-color: #2196f3;
+}
+.link {
+  display: inline-block;
+  text-decoration: none;
+  padding: 12px;
+  font-weight: 500;
+  color: #2a363b;
+  font-size: 16px;
+}
+.active {
+  color: #2196f3;
+}
+.btn {
+  padding: 5px;
+}

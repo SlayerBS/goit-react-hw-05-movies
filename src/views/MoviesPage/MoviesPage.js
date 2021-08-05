@@ -26,18 +26,23 @@ export default function MoviesView() {
 
   const onSubmit = (searchQuery) => {
     setMovies([]);
+
     setSearchQuery(searchQuery);
     history.push({ ...location, search: `query=${searchQuery}` });
   };
 
   const getMovies = () => {
-    getMoviesByQuery(searchQuery).then(({ results }) => setMovies(results));
-    console.log(movies);
+    getMoviesByQuery(searchQuery).then(({ results }) => {
+      if (results.length === 0) {
+        toast.error("No movies");
+        return;
+      }
+      setMovies(results);
+    });
   };
 
   return (
     <>
-      <p>Movies</p>
       <SearchBar onSubmit={onSubmit} />
       <ListMovies data={movies} />
     </>

@@ -10,7 +10,7 @@ export default function HomeView() {
   }, []);
   return (
     <>
-      <p>Trending today</p>
+      <h3>Trending today</h3>
       <ListMovies data={trendingMoviesList} />
     </>
   );
