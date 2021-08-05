@@ -10,18 +10,20 @@ export default function Reviews() {
     getReviews(movieId).then((data) => setReviews(data));
   }, []);
 
-  console.log(reviews);
-  return (
-    <ul>
-      Reviews
-      {reviews.map((review) => {
-        return (
-          <li key={review.id}>
-            <h5>{review.author}</h5>
-            <p>{review.content}</p>
-          </li>
-        );
-      })}
-    </ul>
-  );
+  if (reviews.length === 0) {
+    return <p>No reviews</p>;
+  } else
+    return (
+      <ul>
+        Reviews
+        {reviews.map((review) => {
+          return (
+            <li key={review.id}>
+              <h5>{review.author}</h5>
+              <p>{review.content}</p>
+            </li>
+          );
+        })}
+      </ul>
+    );
 }

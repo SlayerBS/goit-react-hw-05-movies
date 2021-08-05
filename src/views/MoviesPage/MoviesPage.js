@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useRouteMatch, useHistory, useLocation } from "react-router-dom";
 import SearchBar from "../../Components/SearchBar/SearchBar";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import { getMoviesByQuery } from "../../services/api";
 import ListMovies from "../../Components/ListMovies";
 

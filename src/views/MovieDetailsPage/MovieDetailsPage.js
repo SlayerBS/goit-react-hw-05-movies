@@ -13,15 +13,21 @@ import * as api from "../../services/api";
 import poster from "../../no-poster.jpg";
 import LoaderSpiner from "../../Components/Loader";
 
-const Cast = lazy(() => import("../Cast"));
-const Reviews = lazy(() => import("../Reviews"));
+const Cast = lazy(() => import("../Cast" /* webpackChunkName:"cast"*/));
+const Reviews = lazy(() =>
+  import("../Reviews" /* webpackChunkName:"reviews"*/)
+);
 
 export default function MovieDetailView() {
   const history = useHistory();
   const location = useLocation();
+  console.log("history", history);
+
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
   const { url, path } = useRouteMatch();
+  console.log("url", url, "path", path);
+  console.log("location.pathname", location.pathname, "url/cast", url);
 
   useEffect(() => {
     api
@@ -39,7 +45,8 @@ export default function MovieDetailView() {
       .then(setMovie);
   }, [movieId]);
 
-  const handleGoBack = () => {
+  const onGoBack = () => {
+    history.push(location?.state?.from ?? "/");
     return;
   };
 
@@ -47,7 +54,7 @@ export default function MovieDetailView() {
     <>
       {movie && (
         <>
-          <button type="button" onClick={handleGoBack}>
+          <button type="button" onClick={onGoBack}>
             Go back
           </button>
           <div>
@@ -92,10 +99,10 @@ export default function MovieDetailView() {
           <Suspense fallback={<LoaderSpiner />}>
             <Switch>
               <Route path={`${path}/cast`}>
-                <Cast movieId={movieId} />
+                <Cast />
               </Route>
               <Route path={`${path}/reviews`}>
-                <Reviews movieId={movieId} />
+                <Reviews />
               </Route>
             </Switch>
           </Suspense>

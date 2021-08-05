@@ -42,13 +42,11 @@ async function getMoviesByQuery(searchQuery) {
 
 async function getCredits(movieId) {
   const { data } = await axios.get(`/movie/${movieId}/credits`);
-  console.log("api", data);
   return data.cast;
 }
 
 async function getReviews(movieId) {
   const { data } = await axios.get(`/movie/${movieId}/reviews`);
-  console.log("api", data);
   return data.results;
 }
 
