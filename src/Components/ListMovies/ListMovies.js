@@ -1,5 +1,4 @@
-import { Link, useRouteMatch, useLocation, useHistory } from "react-router-dom";
-import styles from "./ListMovies.module.css";
+import { Link, useLocation } from "react-router-dom";
 
 export default function ListMovies({ data }) {
   const location = useLocation();

@@ -1,5 +1,5 @@
 import { lazy, Suspense } from "react";
-import { Switch, Route, useHistory } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import Container from "./Components/Container/Container";
 import AppBar from "./Components/AppBar/AppBar";
 import LoaderSpiner from "./Components/Loader/";
@@ -21,7 +21,6 @@ const HomePage = lazy(() =>
 );
 
 function App() {
-  const history = useHistory();
   return (
     <Container>
       <AppBar />

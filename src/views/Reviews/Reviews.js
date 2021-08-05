@@ -14,7 +14,7 @@ export default function Reviews() {
       }
       setReviews(data);
     });
-  }, []);
+  }, [movieId]);
 
   return (
     <ul>

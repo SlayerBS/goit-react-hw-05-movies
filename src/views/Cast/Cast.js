@@ -18,7 +18,7 @@ export default function Cast() {
       }
       setCast(data);
     });
-  }, []);
+  }, [movieId]);
 
   return (
     <ul className={styles.cast}>

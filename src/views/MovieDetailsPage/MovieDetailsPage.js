@@ -8,7 +8,6 @@ import {
   useHistory,
   useLocation,
 } from "react-router-dom";
-import { toast } from "react-toastify";
 import * as api from "../../services/api";
 import LoaderSpiner from "../../Components/Loader";
 
@@ -52,7 +51,7 @@ export default function MovieDetailsPage() {
     <>
       {movie && (
         <>
-          <button type="button" onClick={onGoBack} class={styles.btn}>
+          <button type="button" onClick={onGoBack} className={styles.btn}>
             Go back
           </button>
           <div className={styles["movie-card"]}>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useRouteMatch, useHistory, useLocation } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import SearchBar from "../../Components/SearchBar/SearchBar";
 import { toast } from "react-toastify";
 import { getMoviesByQuery } from "../../services/api";
@@ -20,7 +20,6 @@ export default function MoviesView() {
   }, [history, location]);
 
   useEffect(() => {
-    console.log("location", location);
     searchQuery && getMovies();
   }, [searchQuery]);
 
