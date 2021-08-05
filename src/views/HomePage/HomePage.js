@@ -1,7 +1,7 @@
-import { getTrendingMovies } from "../services/api";
+import { getTrendingMovies } from "../../services/api";
 import { useState, useEffect } from "react";
 import { Link, useRouteMatch } from "react-router-dom";
-import ListMovies from "../Components/ListMovies";
+import ListMovies from "../../Components/ListMovies";
 
 export default function HomeView() {
   // const { url } = useRouteMatch();

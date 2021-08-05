@@ -4,18 +4,18 @@ import Container from "./Components/Container/Container";
 import AppBar from "./Components/AppBar/AppBar";
 import LoaderSpiner from "./Components/Loader/";
 
-const MoviesView = lazy(() =>
-  import("./views/MoviesView" /* webpackChunkName:"movies-view"*/)
+const MoviesPage = lazy(() =>
+  import("./views/MoviesPage" /* webpackChunkName:"movies-view"*/)
 );
 const NotFoundView = lazy(() =>
   import("./views/NotFoundView" /* webpackChunkName:"notFound-view"*/)
 );
-const MovieDetailView = lazy(() =>
-  import("./views/MovieDetailView" /* webpackChunkName:"moviesDetail-view"*/)
+const MovieDetailsPage = lazy(() =>
+  import("./views/MovieDetailsPage" /* webpackChunkName:"moviesDetail-view"*/)
 );
 
-const HomeView = lazy(() =>
-  import("./views/HomeView" /* webpackChunkName:"home-view"*/)
+const HomePage = lazy(() =>
+  import("./views/HomePage" /* webpackChunkName:"home-view"*/)
 );
 
 function App() {
@@ -25,15 +25,15 @@ function App() {
       <Suspense fallback={<LoaderSpiner />}>
         <Switch>
           <Route path="/" exact>
-            <HomeView />
+            <HomePage />
           </Route>
 
           <Route path="/movies" exact>
-            <MoviesView />
+            <MoviesPage />
           </Route>
 
           <Route path="/movies/:movieId">
-            <MovieDetailView />
+            <MovieDetailsPage />
           </Route>
 
           <Route>
